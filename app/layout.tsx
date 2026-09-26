@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import PlanProvider from "@/context/PlanContext";
 import React from "react";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,9 +28,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${inter.variable} ${oswald.variable} h-full antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${oswald.variable} h-full antialiased`}>
       
       <body className="min-h-full flex flex-col">
+        <Toaster/>
         <PlanProvider>
             <header><Navbar /></header>
             <main>{children}</main>

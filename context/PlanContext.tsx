@@ -1,7 +1,8 @@
 "use client"
 
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import Workout from '@/types/workout.types'
+import { usePathname } from 'next/navigation'
 
 type PlanContextType = {
     todaysPlan: Workout[]
@@ -12,7 +13,16 @@ type PlanContextType = {
     removeFromSavedWorkouts: (Workout: Workout) => void
 }
 
-const PlanContext = createContext<PlanContextType | null>(null)
+export const PlanContext = createContext<PlanContextType | null>(null)
+
+
+function ScrollToTop() {
+    const pathname = usePathname()
+    useEffect(() => {
+        window.scrollTo({ top: 0 })
+    }, [pathname])
+    return null
+}
 
 function PlanProvider({ children }: { children: React.ReactNode }) {
 
@@ -21,35 +31,45 @@ function PlanProvider({ children }: { children: React.ReactNode }) {
 
 
     const addToTodaysPlan = (workout: Workout) => {
-        setTodaysPlan([...todaysPlan, workout])
+        if (todaysPlan.length < 5) {
+            if (!todaysPlan.some(w => w.id === workout.id)) {
+                setTodaysPlan([...todaysPlan, workout])
+            }
+        }
     }
 
     const removeFromTodaysPlan = (workout: Workout) => {
-        const restPlan = todaysPlan.filter(w => workout.id !== w.id)
-        setTodaysPlan(restPlan)
+        if (todaysPlan.some(w => w.id === workout.id)) {
+            const restPlan = todaysPlan.filter(w => w.id !== workout.id)
+            setTodaysPlan(restPlan)
+        }
     }
 
     const addToSavedWorkouts = (workout: Workout) => {
-        setSavedWorkouts([...savedWorkouts, workout])
+        if (!savedWorkouts.some(w => w.id === workout.id)) {
+            setSavedWorkouts([...savedWorkouts, workout])
+        }
     }
 
     const removeFromSavedWorkouts = (workout: Workout) => {
-        const restSaved = savedWorkouts.filter(w => workout.id !== w.id)
-        setSavedWorkouts(restSaved)
+        if (savedWorkouts.some(w => w.id === workout.id)) {
+            const restSaved = savedWorkouts.filter(w => w.id !== workout.id)
+            setSavedWorkouts(restSaved)
+        }
     }
 
 
     return (
         <PlanContext.Provider
-            value={{ 
+            value={{
                 todaysPlan,
                 savedWorkouts,
                 addToTodaysPlan,
                 removeFromTodaysPlan,
                 addToSavedWorkouts,
                 removeFromSavedWorkouts
-             }}
-        >{children}</PlanContext.Provider>
+            }}
+        ><ScrollToTop />{children}</PlanContext.Provider>
     )
 }
 

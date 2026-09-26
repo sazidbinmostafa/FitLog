@@ -1,6 +1,20 @@
+"use client"
+
 import PlanTab from "@/components/my-plan/plan-tab/PlanTab";
+import { PlanContext } from "@/context/PlanContext";
+import { useContext } from "react";
 
 function MyPlanPage() {
+
+  const workoutPlanContext = useContext(PlanContext)
+  if(!workoutPlanContext){
+    return null;
+  }
+
+  const {todaysPlan, savedWorkouts, removeFromTodaysPlan, removeFromSavedWorkouts} = workoutPlanContext;
+
+  console.log(todaysPlan)
+
   return (
     <div className="container mx-auto py-10 text-white">
       <div>

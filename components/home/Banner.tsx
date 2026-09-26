@@ -10,7 +10,7 @@ function Banner() {
                     <p className='text-[#C2F800] font-bold text-sm'>WORKOUT LIBRARY</p>
                     <h1 className='font-bold text-3xl md:text-4xl lg:text-6xl text-white'>TRAIN WITH INTENT. <br /> LOG EVERY SET.</h1>
                     <p className='text-[#9CA3AF] text-wrap'>FitLog is a dark, no-nonsense gym companion: pick a lift, <br /> lock it into {"today's"} plan, and watch the {"week's"} work add up.</p>
-                    <a href="#workouts-library" className='btn bg-[#C2F800] text-black hover:bg-[#A8D500] focus:bg-[#A8D500] active:bg-[#A8D500] uppercase font-bold'>Browse Workouts</a>
+                    <a href="#library" className='btn bg-[#C2F800] text-black hover:bg-[#A8D500] focus:bg-[#A8D500] active:bg-[#A8D500] uppercase font-bold'>Browse Workouts</a>
                 </div>
                 <div>
                     <Image src="/images/banner.png" alt="FITLOG Banner" width={400} height={400} />

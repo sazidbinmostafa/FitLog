@@ -48,10 +48,6 @@
   }
 }
 
-:root{
-  scroll-behavior: smooth;
-}
-
 main{
   margin-top: 3.5rem;
 }

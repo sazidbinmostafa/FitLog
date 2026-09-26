@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Banner/>
-      <section id="workouts-library" className="py-5">
+      <section id="library" className="lg:pt-14">
         <Workouts/>
       </section>
     </div>

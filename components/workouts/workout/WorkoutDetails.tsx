@@ -1,10 +1,43 @@
-import React from 'react'
+"use client"
+
+import React, { useContext } from 'react'
 import WorkoutTable from './WorkoutTable'
-import { Bookmark, Calendar } from 'lucide-react';
+import { Bookmark, Calendar, Check, Info, MessageCircleWarning, MessageCircleWarningIcon, MessageSquareWarning, Radiation } from 'lucide-react';
 import Image from 'next/image'
 import Workout from '@/types/workout.types'
+import { PlanContext } from '@/context/PlanContext';
+import toast from 'react-hot-toast';
 
-async function WorkoutDetails({ workoutDetails }: { workoutDetails: Workout }) {
+function WorkoutDetails({ workoutDetails }: { workoutDetails: Workout }) {
+
+    const workoutPlanContext = useContext(PlanContext)
+    if (!workoutPlanContext) {
+        return null;
+    }
+    const { todaysPlan, savedWorkouts, addToTodaysPlan, addToSavedWorkouts } = workoutPlanContext;
+
+    const handleAddToTodaysPlan = () => {
+        if (todaysPlan.length < 5) {
+            addToTodaysPlan(workoutDetails)
+            toast.success('Added to Plan Successfully');
+        }
+        else {
+            toast(
+                <span>
+                    You have already 5 plans for today
+                </span>,
+                {
+                    icon: <MessageSquareWarning className='text-warning font-bold' />,
+                }
+            );
+        }
+    }
+
+    const handleAddToSavedWorkouts = () => {
+        addToSavedWorkouts(workoutDetails)
+        toast.success('Saved for later');
+    }
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5 container">
             <div className="flex justify-center">
@@ -33,8 +66,18 @@ async function WorkoutDetails({ workoutDetails }: { workoutDetails: Workout }) {
                         </ol>
                     </div>
                     <div className="flex gap-3">
-                        <button className="btn btn-sm md:btn-md bg-[#C2F800] text-[#0F1115] rounded-xl"><Calendar />Add to today’s plan</button>
-                        <button className="btn btn-sm md:btn-md btn-outline border-[#374151] rounded-xl"><Bookmark />Save for later</button>
+                        {
+                                todaysPlan.some(w => w.id === workoutDetails.id) ? (
+                                <button className="btn btn-sm bg-gray-300 md:btn-md text-[#0F1115] rounded-xl cursor-not-allowed"><Check /> Added to today’s plan</button>) : 
+                                todaysPlan.length === 5 ? 
+                                (<button onClick={handleAddToTodaysPlan} className="btn btn-sm md:btn-md btn-outline border-[#374151] rounded-xl"><Calendar />Add to today’s plan</button>) : 
+                                (<button onClick={handleAddToTodaysPlan} className="btn btn-sm md:btn-md bg-[#C2F800] text-[#0F1115] rounded-xl"><Calendar />Add to today’s plan</button>)
+                        }
+                        {
+                            savedWorkouts.some(w => w.id === workoutDetails.id) ? (
+                                <button className="btn btn-sm bg-gray-300 md:btn-md text-[#0F1115] rounded-xl cursor-not-allowed"><Check /> Saved for later</button>) : (
+                                <button onClick={handleAddToSavedWorkouts} className="btn btn-sm md:btn-md btn-outline border-[#374151] rounded-xl"><Bookmark />Save for later</button>)
+                        }
                     </div>
                 </div>
             </div>
