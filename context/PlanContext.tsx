@@ -19,7 +19,7 @@ export const PlanContext = createContext<PlanContextType | null>(null)
 function ScrollToTop() {
     const pathname = usePathname()
     useEffect(() => {
-        window.scrollTo({ top: 0 })
+        window.scrollTo({ top: 0, behavior:"smooth"})
     }, [pathname])
     return null
 }
