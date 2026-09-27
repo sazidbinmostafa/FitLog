@@ -33,7 +33,7 @@ Fit Log is a responsive workout logging app designed to follow the Figma design 
    Tabs for Today’s Plan and Saved. Metrics summary row (Exercises, Minutes, Calories). Cards with View Details, Mark as Done, and Remove buttons. Empty state message + CTA button when no workouts are added.
 
 3. **Toast Notifications**  
-   Feedback for all actions (Add, Save, Mark Done, Remove).
+   Toast Feedback for all actions (Add, Save, Mark Done, Remove).
 
 4. **Sorting Dropdown**  
    Sort workouts by Duration, Calories, or Rating in My Plan page.
