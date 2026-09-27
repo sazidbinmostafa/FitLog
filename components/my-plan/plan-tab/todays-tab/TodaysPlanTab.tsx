@@ -9,14 +9,14 @@ function TodaysPlanTab() {
     if (!workoutsPlanContext) {
         return null
     }
-    const { todaysPlan, removeFromTodaysPlan } = workoutsPlanContext;
+    const { todaysPlan, removeFromTodaysPlan} = workoutsPlanContext;
 
     return (
         <>
             {todaysPlan.length > 0 ?
-            todaysPlan.map((plan)=> <PlanCard key={plan.id} workout={plan} removeFromTodaysPlan={removeFromTodaysPlan} />) :
-            <EmptyPlan/>  
-        }
+                todaysPlan.map((plan) => <PlanCard key={plan.id} workout={plan} removeFromTodaysPlan={removeFromTodaysPlan}/>) :
+                <EmptyPlan />
+            }
         </>
     )
 }

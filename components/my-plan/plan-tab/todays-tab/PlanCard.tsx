@@ -4,6 +4,7 @@ import { Check, Clock,  Flame, Star} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 
 type PlanCardProps = {
@@ -11,12 +12,14 @@ type PlanCardProps = {
     removeFromTodaysPlan: (workout: Workout) => void
 }
 
-function PlanCard({ workout, removeFromTodaysPlan }: PlanCardProps) {
+function PlanCard({ workout, removeFromTodaysPlan}: PlanCardProps) {
 
     const [markAsDone, setMarkAsDone] = useState(false);
 
     const handleMarkAsDone = () => {
         setMarkAsDone(true)
+        removeFromTodaysPlan(workout)
+        toast.success("Marked as done")
     }
 
     return (

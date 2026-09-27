@@ -11,9 +11,7 @@ function MyPlanPage() {
     return null;
   }
 
-  const {todaysPlan, savedWorkouts, removeFromTodaysPlan, removeFromSavedWorkouts} = workoutsPlanContext;
-
-  console.log(todaysPlan)
+  const {todaysPlan} = workoutsPlanContext;
 
   return (
     <div className="container mx-auto py-10 text-white">

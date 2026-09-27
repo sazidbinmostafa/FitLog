@@ -11,6 +11,7 @@ type PlanContextType = {
     removeFromTodaysPlan: (workout: Workout) => void
     addToSavedWorkouts: (Workout: Workout) => void
     removeFromSavedWorkouts: (Workout: Workout) => void
+
 }
 
 export const PlanContext = createContext<PlanContextType | null>(null)
@@ -58,6 +59,8 @@ function PlanProvider({ children }: { children: React.ReactNode }) {
         }
     }
 
+    
+
 
     return (
         <PlanContext.Provider
@@ -67,7 +70,7 @@ function PlanProvider({ children }: { children: React.ReactNode }) {
                 addToTodaysPlan,
                 removeFromTodaysPlan,
                 addToSavedWorkouts,
-                removeFromSavedWorkouts
+                removeFromSavedWorkouts,
             }}
         ><ScrollToTop />{children}</PlanContext.Provider>
     )
