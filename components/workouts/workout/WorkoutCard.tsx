@@ -25,7 +25,7 @@ function WorkoutCard({ workout }: { workout: Workout }) {
                     </div>
                     <hr />
                     <div className="card-actions flex gap-5">
-                        <span className='text-sm flex items-center gap-1'><Clock width={14} height={14} /> {workout.duration} mins</span>
+                        <span className='text-sm flex items-center gap-1'><Clock  width={14} height={14} /> {workout.duration} mins</span>
                         <span className='text-sm flex items-center gap-1'><Flame width={14} height={14} /> {workout.caloriesBurned} kcal</span>
                         <span className='text-sm flex items-center gap-1'><Star width={14} height={14} /> {workout.rating}</span>
                     </div>

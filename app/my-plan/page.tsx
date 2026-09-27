@@ -1,6 +1,6 @@
 "use client"
 
-import PlanTab from "@/components/my-plan/plan-tab/PlanTab";
+import PlanTab from "@/components/my-plan/PlanTab";
 import { PlanContext } from "@/context/PlanContext";
 import { useContext } from "react";
 
