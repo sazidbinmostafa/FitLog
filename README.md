@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fit Log 🏋️‍♂️
 
-## Getting Started
+A dark, no‑nonsense gym companion built with Next.js and Tailwind CSS. Fit Log helps you browse workouts, lock them into today’s plan, and track your progress with live metrics.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Project Overview
+Fit Log is a responsive workout logging app designed to follow the Figma design exactly. It allows users to:
+- Browse a workout library
+- View detailed workout pages
+- Add workouts to Today’s Plan or save them for later
+- Track exercises, minutes, and calories live
+- Manage workouts with actions like View Details, Mark as Done, and Remove
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technologies Used
+- **Next.js (App Router)** → UI and navigation
+- **TypeScript** → Strong typing and safer code
+- **Tailwind CSS + DaisyUI** → Styling and responsiveness
+- **Lucide React** → Icons
+- **React Hot Toast** → Toast notifications
+- **Vercel** → Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Key Features
+1. **Responsive Design**  
+   Works seamlessly across mobile, tablet, and desktop.
 
-To learn more about Next.js, take a look at the following resources:
+2. **Workout Library**  
+   Grid of workout cards with image, tags, equipment, and stats. Clicking a card opens the detail page.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Workout Details Page**  
+   Two‑column layout with image, specs table, instructions, and CTA buttons.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **My Plan Page**  
+   Tabs for Today’s Plan and Saved. Metrics summary row (Exercises, Minutes, Calories). Cards with View Details, Mark as Done, and Remove buttons. Empty state message + CTA button when no workouts are added.
 
-## Deploy on Vercel
+5. **Toast Notifications**  
+   Feedback for all actions (Add, Save, Mark Done, Remove).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. **Sorting Dropdown**  
+   Sort workouts by Duration, Calories, or Rating in My Plan page.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+7. **Cap of 5 Lifts**  
+   “Add to today’s plan” is disabled when the plan already contains 5 lifts.
+
+---
+
+- **GitHub Repository Link:** [https://github.com/sazidbinmostafa/FitLog](https://github.com/sazidbinmostafa/FitLog)

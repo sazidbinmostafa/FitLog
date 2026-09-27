@@ -6,25 +6,34 @@ import Link from 'next/link'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
-
+// Props Type \\
 type PlanCardProps = {
     workout: Workout
     removeFromTodaysPlan: (workout: Workout) => void
 }
 
+// Plan Card Component \\
 function PlanCard({ workout, removeFromTodaysPlan}: PlanCardProps) {
 
     const [markAsDone, setMarkAsDone] = useState(false);
 
+    // Handle Marking Workout Done \\
     const handleMarkAsDone = () => {
         setMarkAsDone(true)
         removeFromTodaysPlan(workout)
         toast.success("Marked as done")
     }
 
+    // Handle Remove from Today's Plan \\
+    const handleRemove = () =>{
+        removeFromTodaysPlan(workout)
+        toast.error("Removed from today's plan")
+    }
+
     return (
         <div className="mb-5">
             <div className="bg-[#14171E] shadow-sm rounded-xl flex flex-col sm:flex-row">
+
                 <figure className="w-full sm:w-48">
                     <Image
                         src={workout.image}
@@ -34,6 +43,8 @@ function PlanCard({ workout, removeFromTodaysPlan}: PlanCardProps) {
                         className="rounded-t-xl sm:rounded-l-xl sm:rounded-t-none w-full h-48 md:h-40 object-cover object-[center_25%]"
                     />
                 </figure>
+
+                {/* Workout Short Details */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-5 flex-1 gap-4">
                     <div className="space-y-2 flex-1">
                         <h2 className="text-xl font-semibold">{workout.name}</h2>
@@ -50,13 +61,15 @@ function PlanCard({ workout, removeFromTodaysPlan}: PlanCardProps) {
                             </span>
                         </div>
                     </div>
+
+                    {/* Action Buttons */}
                     <div className='flex flex-col lg:flex-row gap-2'>
                         <Link href={`/workouts/${workout.id}`} className='btn btn-outline hover:bg-base-100 active:bg-base-100 focus:bg-base-100 border-[#374151] text-[#8A92A0] rounded-3xl'>View Details</Link>
                         {markAsDone ?
                             <button disabled className="btn bg-[#C2F800] text-[#0F1115] rounded-3xl">Done<Check width={20} /></button> :
                             <button onClick={handleMarkAsDone} className="btn bg-[#2a391c] hover:bg-[#C2F800] focus:bg-[#C2F800] active:bg-[#C2F800] text-[#98c200] hover:text-[#0F1115] focus:text-[#0F1115] active:text-[#0F1115] rounded-3xl"><Check width={20} />Mark as done</button>
                         }
-                        <button onClick={() => removeFromTodaysPlan(workout)} className="btn btn-outline hover:btn-error focus:btn-error active:btn-error border-[#374151] text-[#8A92A0] hover:text-black focus:text-black active:text-black rounded-3xl w-full sm:w-auto">X</button>
+                        <button onClick={handleRemove} className="btn btn-outline hover:btn-error focus:btn-error active:btn-error border-[#374151] text-[#8A92A0] hover:text-black focus:text-black active:text-black rounded-3xl w-full sm:w-auto">X</button>
                     </div>
                 </div>
             </div>

@@ -7,12 +7,14 @@ import React from "react";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/layout/Footer";
 
+// Fonts: Inter \\
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
 
+// Fonts: Oswald \\
 const oswald = Oswald({
   subsets: ["latin"],
   variable: "--font-oswald",

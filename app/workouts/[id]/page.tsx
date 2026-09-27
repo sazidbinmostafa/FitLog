@@ -1,11 +1,17 @@
 import WorkoutDetails from '@/components/workouts/workout/WorkoutDetails';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+  title: 'FITLOG | Workout Details'
+};
 
 async function WorkoutDetailsPage({ params }: { params: { id: string } }) {
 
     const { id } = await params;
 
-    const getWorkDetails = async () => {
+    // Fetching Workout Details \\
+    const getWorkoutDetails = async () => {
         try {
             const res = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`, {
                 next: { revalidate: 3600 }
@@ -22,7 +28,7 @@ async function WorkoutDetailsPage({ params }: { params: { id: string } }) {
         }
     }
 
-    const workoutDetails = await getWorkDetails()
+    const workoutDetails = await getWorkoutDetails()
 
     return (
         <Suspense>

@@ -10,6 +10,8 @@ function PlanTab() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
+
+    // SortBy State \\
     const [sortBy, setSortBy] = useState("duration")
 
     // Workouts Plan Context
@@ -68,7 +70,7 @@ function PlanTab() {
 
                     {/* Sorting Dropdown */}
                     <select
-                        className="select select-bordered bg-[#14171E] text-[#8A92A0]"
+                        className="select select-bordered bg-[#14171E] text-[#8A92A0] w-fit"
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
                     >

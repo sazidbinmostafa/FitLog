@@ -2,6 +2,7 @@ import Workout from '@/types/workout.types';
 import PlanCard from './PlanCard';
 import EmptyPlan from '../empty-plan/EmptyPlan';
 
+// Props Type \\
 type TodaysPlanProps = {
     sortedTodaysPlan: Workout[]
     removeFromTodaysPlan: (Workout: Workout) => void

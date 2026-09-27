@@ -7,6 +7,7 @@ import { useContext } from "react";
 
 function MyPlanPage() {
 
+  // Workouts Plan Context \\
   const workoutsPlanContext = useContext(PlanContext)
   if (!workoutsPlanContext) {
     return null;
@@ -14,18 +15,20 @@ function MyPlanPage() {
 
   const { todaysPlan } = workoutsPlanContext;
 
-
-  function getSummary(todaysPlan: Workout[]) {
+  // Get Metrics Summary Function \\
+  function getMetricsSummary(todaysPlan: Workout[]) {
     const exercises = todaysPlan.length
     const minutes = todaysPlan.reduce((acc, workout) => acc + workout.duration, 0)
     const calories = todaysPlan.reduce((acc, workout) => acc + workout.caloriesBurned, 0)
     return { exercises, minutes, calories }
   }
 
-  const { exercises, minutes, calories } = getSummary(todaysPlan)
+  const { exercises, minutes, calories } = getMetricsSummary(todaysPlan)
 
   return (
     <div className="container mx-auto py-10 text-white">
+
+      {/* Heading */}
       <div>
         <h1 className="text-3xl font-bold mb-2">My Plan</h1>
         {
@@ -37,6 +40,7 @@ function MyPlanPage() {
         }
       </div>
 
+      {/* Metrics Data */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
 
         <div className="bg-[#13161D] p-5 rounded-xl text-center">
@@ -56,7 +60,7 @@ function MyPlanPage() {
       </div>
 
 
-
+      {/* Plan Tab */}
       <section>
         <PlanTab></PlanTab>
       </section>

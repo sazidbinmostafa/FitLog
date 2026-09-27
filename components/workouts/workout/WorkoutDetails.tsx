@@ -10,12 +10,15 @@ import toast from 'react-hot-toast';
 
 function WorkoutDetails({ workoutDetails }: { workoutDetails: Workout }) {
 
+
+    // WorkoutPlanContext \\
     const workoutPlanContext = useContext(PlanContext)
     if (!workoutPlanContext) {
         return null;
     }
     const { todaysPlan, savedWorkouts, addToTodaysPlan, addToSavedWorkouts } = workoutPlanContext;
 
+    // Handle Add To Todays Plan Function \\
     const handleAddToTodaysPlan = () => {
         if (todaysPlan.length < 5) {
             addToTodaysPlan(workoutDetails)
@@ -33,6 +36,7 @@ function WorkoutDetails({ workoutDetails }: { workoutDetails: Workout }) {
         }
     }
 
+    // Handle Add To Saved Workouts Function \\
     const handleAddToSavedWorkouts = () => {
         addToSavedWorkouts(workoutDetails)
         toast.success('Saved for later');
@@ -45,6 +49,7 @@ function WorkoutDetails({ workoutDetails }: { workoutDetails: Workout }) {
             </div>
             <div>
                 <div >
+                    {/* Workout's Details */}
                     <div className='mt-1'>
                         <h2 className="card-title text-white font-bold text-3xl my-1">
                             {workoutDetails.name}
@@ -56,6 +61,7 @@ function WorkoutDetails({ workoutDetails }: { workoutDetails: Workout }) {
                             <div className="badge badge-sm badge-accent bg-[#C2F800] border border-[#C2F800] text-black font-bold rounded-3xl" key={index}>{muscle}</div>
                         ))}
                     </div>
+                    {/* Workout's Instruction Table */}
                     <WorkoutTable workoutDetails={workoutDetails} />
                     <div className='my-5'>
                         <h3 className='text-white font-semibold text-lg'>INSTRUCTIONS</h3>
@@ -65,6 +71,7 @@ function WorkoutDetails({ workoutDetails }: { workoutDetails: Workout }) {
                             ))}
                         </ol>
                     </div>
+                    {/* Action Buttons */}
                     <div className="flex gap-3">
                         {
                                 todaysPlan.some(w => w.id === workoutDetails.id) ? (

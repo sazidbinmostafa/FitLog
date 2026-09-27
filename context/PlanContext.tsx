@@ -1,9 +1,9 @@
 "use client"
-
 import React, { createContext, useEffect, useState } from 'react'
 import Workout from '@/types/workout.types'
 import { usePathname } from 'next/navigation'
 
+//  Plan Context Types \\
 type PlanContextType = {
     todaysPlan: Workout[]
     savedWorkouts: Workout[]
@@ -16,7 +16,7 @@ type PlanContextType = {
 
 export const PlanContext = createContext<PlanContextType | null>(null)
 
-
+// Scrolling to the Top of the Page while Routing \\
 function ScrollToTop() {
     const pathname = usePathname()
     useEffect(() => {
@@ -27,10 +27,11 @@ function ScrollToTop() {
 
 function PlanProvider({ children }: { children: React.ReactNode }) {
 
+    // States \\
     const [todaysPlan, setTodaysPlan] = useState<Workout[]>([])
     const [savedWorkouts, setSavedWorkouts] = useState<Workout[]>([])
 
-
+    // Add To Todays Plan Function \\
     const addToTodaysPlan = (workout: Workout) => {
         if (todaysPlan.length < 5) {
             if (!todaysPlan.some(w => w.id === workout.id)) {
@@ -39,6 +40,7 @@ function PlanProvider({ children }: { children: React.ReactNode }) {
         }
     }
 
+    // Remove From Todays Plan Function \\
     const removeFromTodaysPlan = (workout: Workout) => {
         if (todaysPlan.some(w => w.id === workout.id)) {
             const restPlan = todaysPlan.filter(w => w.id !== workout.id)
@@ -46,12 +48,14 @@ function PlanProvider({ children }: { children: React.ReactNode }) {
         }
     }
 
+    // Add To Saved Workouts Fuctions \\
     const addToSavedWorkouts = (workout: Workout) => {
         if (!savedWorkouts.some(w => w.id === workout.id)) {
             setSavedWorkouts([...savedWorkouts, workout])
         }
     }
 
+    // Remove From Saved Workouts Function \\
     const removeFromSavedWorkouts = (workout: Workout) => {
         if (savedWorkouts.some(w => w.id === workout.id)) {
             const restSaved = savedWorkouts.filter(w => w.id !== workout.id)
